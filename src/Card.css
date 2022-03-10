@@ -1,0 +1,29 @@
+
+
+.course-card {
+  width: 400px;
+  height: 100px;
+  background-color: white;
+  color: black;
+  display: flex;
+}
+
+.instructor-image {
+  width: 100px;
+  height: 100px;
+}
+
+.course-title-description {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.instructor-name {
+  flex: 1;
+}
+
+.course-title {
+  flex: 1;
+  font-size: 16px;
+}

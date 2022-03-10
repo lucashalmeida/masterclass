@@ -3,11 +3,11 @@ import './App.css';
 import { Catalog } from "./Catalog";
 
 function App() {
-  const [user, setUser] = useUser();
+  const [user] = useUser();
   return (
     <div className="App">
       <header className="App-header">
-        {user ? <Catalog user={user} setUser={setUser} /> : <Login />}
+        {user ? <Catalog user={user} /> : <Login />}
       </header>
     </div>
   );

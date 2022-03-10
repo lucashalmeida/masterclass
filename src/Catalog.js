@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { CourseCard } from "./Card";
 import { getCourses } from "./api/courses";
 
 export const Catalog = ({ user }) => {
@@ -12,7 +13,12 @@ export const Catalog = ({ user }) => {
   }, []);
 
   return (
-    <section>
-    </section>
+    <>
+      {
+        courses.map(course => (
+          < CourseCard title={course.title} instructor_name={course.instructor_name} instructor_image_url={course.instructor_image_url} />
+        ))
+      }
+    </>
   )
 }
