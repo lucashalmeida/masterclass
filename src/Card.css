@@ -6,6 +6,12 @@
   background-color: white;
   color: black;
   display: flex;
+  margin: 10px 0;
+  cursor: pointer;
+}
+
+.course-card.favorite {
+  border: 2px solid yellow;
 }
 
 .instructor-image {
@@ -17,6 +23,8 @@
   flex: 1;
   display: flex;
   flex-direction: column;
+  text-align: left;
+  padding-left: 20px;
 }
 
 .instructor-name {

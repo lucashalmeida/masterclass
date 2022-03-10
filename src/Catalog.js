@@ -7,16 +7,14 @@ export const Catalog = ({ user }) => {
   const [courses, setCourses] = useState([]);
 
   useEffect(async () => {
-    const courses = await getCourses(user.email);
-    console.info(courses);
-    setCourses(courses);
+    setCourses(await getCourses());
   }, []);
 
   return (
     <>
       {
         courses.map(course => (
-          < CourseCard title={course.title} instructor_name={course.instructor_name} instructor_image_url={course.instructor_image_url} />
+          <CourseCard key={course.id} course={course} user={user} onFavoriteSuccess={async () => { setCourses(await getCourses()) }} />
         ))
       }
     </>

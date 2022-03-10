@@ -16,3 +16,14 @@ export const post = async (path, data) => {
   })
   return await res.json()
 }
+
+export const del = async (path, data) => {
+  const res = await fetch(`${baseURL}${path}`, {
+    method: 'DELETE',
+    body: JSON.stringify(data),
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+  return res.ok
+}
