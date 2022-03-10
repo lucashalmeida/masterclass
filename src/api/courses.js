@@ -1,5 +1,5 @@
 import { get } from "./utils";
 
-export const getCourses = () => {
-  return get(`/jsonapi/v1​/courses`);
+export const getCourses = (email) => {
+  return get(`/jsonapi/v1/courses?email=${email}`);
 }
