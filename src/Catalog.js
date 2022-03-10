@@ -17,7 +17,7 @@ export const Catalog = ({ user }) => {
 
   return (
     <>
-      <Filter title="Toggle Favorites" onlyFavorites={onlyFavorites} setOnlyFavorites={setOnlyFavorites} />
+      <Filter title="Show Only Favorites" onlyFavorites={onlyFavorites} setOnlyFavorites={setOnlyFavorites} />
       {
         courses.map(course => {
           if (onlyFavorites) {
