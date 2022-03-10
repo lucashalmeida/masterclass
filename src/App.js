@@ -7,22 +7,18 @@ import { Catalog } from "./Catalog";
 // Structuring the app this way, allows for a cleaner "App", and we could add "Providers" here as needed.
 function App() {
   return (
-    // <BrowserRouter>
-    //   <Routes>
-        // <Route path="/" element={<Main />}>
-          // <Route path="/courses" exact></Route>
-          <PrimaryLayout />
-    //     </Route>
-    //   </Routes>
-    // </BrowserRouter >
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Main />}></Route>
+        <Route path="/courses" element={<PrimaryLayout />}></Route>
+      </Routes>
+    </BrowserRouter >
   );
 }
 
 // As the app grows, this would be in another file
 const PrimaryLayout = () => {
-
   const [user] = useUser();
-
   return (
     <div className="App">
       <header className="App-header">
@@ -47,11 +43,15 @@ const Login = () => {
 }
 
 // Used just to illustrate the path that's not /coursers
-// const Main = () => {
-//   return (
-//     <button>Not /courses</button>
-//   )
-// }
+const Main = () => {
+  return (
+    <div className="App">
+      <header className="App-header">
+        <div>Not /courses</div>
+      </header>
+    </div >
+  )
+}
 
 
 export default App;

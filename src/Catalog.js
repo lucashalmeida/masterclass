@@ -6,8 +6,11 @@ export const Catalog = ({ user }) => {
 
   const [courses, setCourses] = useState([]);
 
-  useEffect(async () => {
-    setCourses(await getCourses());
+  useEffect(() => {
+    const fetchCourses = async () => {
+      setCourses(await getCourses());
+    }
+    fetchCourses();
   }, []);
 
   return (

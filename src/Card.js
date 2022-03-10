@@ -33,6 +33,7 @@ const CourseTitleAndDescription = ({ title, instructor_name }) => {
   )
 }
 
+// Should throttle to avoid the user clicking many times
 const onCardClick = async (course, onFavoriteSuccess) => {
   if (course.favorite) {
     const res = await removeFromFavorites(course.id);
