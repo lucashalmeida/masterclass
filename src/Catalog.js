@@ -5,12 +5,15 @@ import { getCourses } from "./api/courses";
 
 export const Catalog = ({ user }) => {
 
+  const [loading, setLoading] = useState(true);
   const [courses, setCourses] = useState({});
   const [onlyFavorites, setOnlyFavorites] = useState(false);
+  const [offset, setOffset] = useState(0);
 
   useEffect(() => {
     const fetchCourses = async () => {
-      setCourses(await getCourses());
+      setCourses(await getCourses(offset));
+      setLoading(false);
     }
     fetchCourses();
   }, []);
@@ -23,23 +26,32 @@ export const Catalog = ({ user }) => {
     setCourses(updated)
   };
 
+  const courseIds = Object.keys(courses);
+
   return (
     <>
-      <Filter title="Show Only Favorites" onlyFavorites={onlyFavorites} setOnlyFavorites={setOnlyFavorites} />
-      {
-        Object.keys(courses).map(courseId => {
-          const course = courses[courseId];
-          if (onlyFavorites) {
-            return (
-              course.favorite &&
-              <CourseCard key={course.id} course={course} user={user} onCardClickCallback={updateCourse} />
-            )
-          } else {
-            return (
-              <CourseCard key={course.id} course={course} user={user} onCardClickCallback={updateCourse} />
-            )
+      {courseIds.length > 0 &&
+        <>
+          <Filter title="Show Only Favorites" onlyFavorites={onlyFavorites} setOnlyFavorites={setOnlyFavorites} />
+          {
+            courseIds.map(courseId => {
+              const course = courses[courseId];
+              if (onlyFavorites) {
+                return (
+                  course.favorite &&
+                  <CourseCard key={course.id} course={course} user={user} onCardClickCallback={updateCourse} />
+                )
+              } else {
+                return (
+                  <CourseCard key={course.id} course={course} user={user} onCardClickCallback={updateCourse} />
+                )
+              }
+            })
           }
-        })
+        </>
+      }
+      {
+        loading && <>LOADING</>
       }
     </>
   )
