@@ -3,10 +3,10 @@ import './Card.css';
 import { addToFavorites, removeFromFavorites } from "./api/courses";
 
 
-export const CourseCard = ({ course, onFavoriteSuccess }) => {
+export const CourseCard = ({ course, onCardClickCallback }) => {
   const className = `course-card ${course.favorite ? 'favorite' : ''}`
   return (
-    <div className={className} onClick={() => onCardClick(course, onFavoriteSuccess)}    >
+    <div className={className} onClick={() => onCardClick(course, onCardClickCallback)}>
       <InstructorImage instructor_image_url={course.instructor_image_url} />
       <CourseTitleAndDescription title={course.title} instructor_name={course.instructor_name} />
     </div>
@@ -34,12 +34,12 @@ const CourseTitleAndDescription = ({ title, instructor_name }) => {
 }
 
 // Should throttle to avoid the user clicking many times
-const onCardClick = async (course, onFavoriteSuccess) => {
+const onCardClick = async (course, onCardClickCallback) => {
   if (course.favorite) {
-    const res = await removeFromFavorites(course.id);
-    console.info(res);
+    removeFromFavorites(course.id);
   } else {
     addToFavorites(course.id);
   }
-  onFavoriteSuccess();
+  course.favorite = !course.favorite
+  onCardClickCallback(course);
 }

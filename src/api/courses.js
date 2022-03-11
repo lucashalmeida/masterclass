@@ -1,9 +1,12 @@
 import { get, post, del } from "./utils";
 const EMAIL = 'lucashalmeida@gmail.com';
 
-// I really don't like passing the email here, but for now it's ok.
-export const getCourses = () => {
-  return get(`/jsonapi/v1/courses?email=${EMAIL}`);
+export const getCourses = async () => {
+  const courses = await get(`/jsonapi/v1/courses?email=${EMAIL}`);
+  return courses.reduce((all, course) => {
+    all[course.id] = course;
+    return all;
+  }, {})
 }
 
 export const addToFavorites = (courseId) => {
