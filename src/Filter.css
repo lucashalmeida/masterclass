@@ -1,9 +1,11 @@
 .filter {
   display: flex;
+  padding: 0 45px;
+  margin-top: 20px;
 }
 
 .filter-checkbox {
   width: 20px;
   height: 20px;
-  margin: auto;
+  margin: 8px 10px;
 }
